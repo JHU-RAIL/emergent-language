@@ -29,5 +29,5 @@ To run the training script, you should provide these arguments:
 
 ### Example usage:
 ```bash
-python train.py -epochs 700 -path_to_file ./mydataset.pkl -loss_mode 4 -sentence_length 5 -vocab_size 100
+python train.py -epochs 700 -path_to_file /path/to/rgb_loader_20_40_60_80_100 -loss_mode 4 -sentence_length 5 -vocab_size 100
 ```
