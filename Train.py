@@ -51,6 +51,7 @@ epochs = args.epochs
 path_to_file = args.path_to_file
 loss_mode = args.loss_mode
 vocab_size = args.vocab_size
+sentence_length = args.sentence_length
 
 # Set random seeds
 random.seed(42)
