@@ -15,8 +15,19 @@ To access the dataset, use [this link](https://drive.google.com/file/d/10m99jqJe
 
 ## Running the Training Script
 
-To run the training script, you need to provide two arguments: `-epochs` which specifies the number of epochs for training, and `-path_to_file` which specifies the path to your dataset file. Here is how you can run the script from the command line:
+To run the training script, you should provide these arguments:
 
+- `-epochs <int>`: Number of epochs for training (required).
+- `-path_to_file <str>`: Path to your dataset file (required).
+- `-loss_mode <int>`: Choose the loss function mode (default = `4`):
+  - `1` = Regular
+  - `2` = Progressive
+  - `3` = Progressive Strict
+  - `4` = Progressive Strict with Containing Bias
+- `-sentence_length <int>`: Set the sentence length (default = `5`).
+- `-vocab_size <int>`: Set the vocabulary size (default = `100`).
+
+### Example usage:
 ```bash
-python train.py -epochs <number_of_epochs> -path_to_file <path_to_your_dataset>
+python train.py -epochs 20 -path_to_file ./mydataset.pkl -loss_mode 4 -sentence_length 5 -vocab_size 100
 ```
