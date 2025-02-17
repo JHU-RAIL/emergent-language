@@ -156,7 +156,7 @@ epoch = 0
 # Your main training loop:
 for epoch in range(epochs):
     overall_loss = 0
-    for batch_idx, (x, _) in enumerate(train_loader):
+    for batch_idx, (x, y) in enumerate(train_loader):
         ica_orders = None
 
         x = x.to(DEVICE)
@@ -191,15 +191,12 @@ for epoch in range(epochs):
     # Validation part
     model.eval()  # switch model to the evaluation mode
     with torch.no_grad():  # deactivate autograd engine to reduce memory usage and speed up computations
-        for batch_idx, (x, _) in enumerate(val_loader):
-            ica_orders = torch.div(_, 100, rounding_mode='trunc')
-            ica_orders-=1
+        for batch_idx, (x, y) in enumerate(val_loader):
+            ica_orders = None
             x = x.to(DEVICE)
             if loss_mode in [2, 3, 4]:
                 ica_orders = torch.div(y, int(1000 / sentence_length), rounding_mode='trunc')
                 ica_orders -= 1
-            else:
-                ica_orders = torch.zeros_like(y)
 
             x_hat1, message, z, receiver_op = model(x)
             recon_loss = compute_loss_dispatcher(
