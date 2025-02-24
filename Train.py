@@ -196,7 +196,8 @@ for epoch in range(epochs):
             x = x.to(DEVICE)
             if loss_mode in [2, 3, 4]:
                 ica_orders = torch.div(y, int(1000 / sentence_length), rounding_mode='trunc')
-                ica_orders -= 1
+                if loss_mode in [2]:
+                    ica_orders -= 1
 
             x_hat1, message, z, receiver_op = model(x)
             recon_loss = compute_loss_dispatcher(
